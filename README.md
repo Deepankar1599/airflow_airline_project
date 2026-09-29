@@ -1,6 +1,6 @@
 # Airline Booking Data Pipeline — Architecture Documentation
 
-## 1. One-line summary (lead with this in an interview)
+## 1. Project Description
 
 > "I built an end-to-end, medallion-architecture data pipeline that ingests airline booking data from an API, lands it in S3, transforms it through Databricks with Unity Catalog governance, and builds tested business-layer models in dbt Cloud — the whole thing orchestrated daily by Airflow."
 
