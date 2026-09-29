@@ -1,0 +1,5 @@
+import os
+
+DBT_CLOUD_API_TOKEN =  os.getenv('DBT_CLOUD_API_TOKEN')
+
+print(DBT_CLOUD_API_TOKEN)

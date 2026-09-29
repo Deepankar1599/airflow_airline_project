@@ -1,0 +1,7 @@
+boto3
+pandas
+requests
+dotenv
+apache-airflow-providers-databricks
+
+apache-airflow-providers-dbt-cloud
