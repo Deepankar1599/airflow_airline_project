@@ -36,6 +36,7 @@
    fct_bookings, daily_booking_summary
    (queryable business tables — ready for BI/reporting)
 ```
+DBT code is managed in different repository - [Click for DBT code](https://github.com/Deepankar1599/airline_booking_dbt.git)
 
 ## 3. Why each tool is where it is
 
@@ -60,6 +61,7 @@
 - `DatabricksRunNowOperator` runs synchronously, so Airflow doesn't move to the next stage until the silver tables are fully written.
 
 ### Stage 3 — Gold layer (dbt Cloud, triggered via API from a Python task)
+[Click for DBT code](https://github.com/Deepankar1599/airline_booking_dbt.git)
 - dbt declares the three silver tables as **sources** (not models) since they're built outside dbt.
 - Builds two gold models:
   - **`fct_bookings`** — the fact table, joining bookings to airports/passengers with explicit `has_valid_airport` / `has_valid_passenger` flags (left joins, not inner — broken foreign keys are made visible rather than silently dropped).
