@@ -90,9 +90,3 @@ DBT code is managed in different repository - [Click for DBT code](https://githu
 | dbt Cloud instead of local dbt via Airflow BashOperator | Airflow runs in a Codespace with no access to a locally-run dbt process; dbt Cloud is also a more realistic production pattern | Adds a dependency on an external managed service instead of self-hosted orchestration |
 | Unity Catalog managed tables instead of raw external Delta paths | Unity Catalog blocks external writes into the metastore's managed storage root (`LOCATION_OVERLAP`); managed tables also give better governance | Slightly less direct control over exact file layout in S3 |
 
-## 7. Problems hit and how they were resolved (strong interview material)
-
-- **AWS Glue `AccessDeniedException`** at the account level, unrelated to IAM permissions, reproduced even on a brand-new AWS account — identified as a known AWS-side restriction rather than a config error, and pivoted the compute layer from Glue to Databricks rather than losing time on unresponsive AWS support.
-- **Unity Catalog `LOCATION_OVERLAP`** error when writing external Delta files into a path that overlapped the metastore's managed storage root — resolved by switching from raw path writes (`.option("path", ...)`) to Unity Catalog managed tables (`saveAsTable`).
-- **Duplicate rows from `append` mode** on static reference tables (airports/passengers) — identified that `dropDuplicates()` only dedupes within a single run's DataFrame, not against what's already in the target table, and fixed it by switching to Delta `MERGE` upserts.
-- **Airflow/dbt environment mismatch** — Airflow running in a cloud Codespace had no access to a dbt project on a local machine; resolved by moving dbt to a cloud-hosted service (dbt Cloud) triggered via API instead.
