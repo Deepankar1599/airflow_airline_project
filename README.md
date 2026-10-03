@@ -66,6 +66,7 @@ DBT code is managed in different repository - [Click for DBT code](https://githu
 - Builds two gold models:
   - **`fct_bookings`** — the fact table, joining bookings to airports/passengers with explicit `has_valid_airport` / `has_valid_passenger` flags (left joins, not inner — broken foreign keys are made visible rather than silently dropped).
   - **`daily_booking_summary`** — aggregated booking count, unique passengers, total/average amount, grouped by date and airport.
+   - **`country_airports`** — aggregating how many operational airports each country have.
 - Runs `dbt build`, which builds every model and runs every test in one command.
 
 ## 5. Data quality strategy
